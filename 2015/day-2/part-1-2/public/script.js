@@ -1,7 +1,5 @@
 'use strict';
 
-console.log('furkan');
-
 const getInput = async function () {
   const response = await fetch('http://localhost:3000/api');
   const input = await response.json();
@@ -9,6 +7,7 @@ const getInput = async function () {
 };
 
 const solve = async function () {
+  // part one
   const input = await getInput();
   const toArray = input.split('\n');
   toArray.pop();
@@ -36,6 +35,20 @@ const solve = async function () {
     total += e;
   });
   console.log(total);
+  // part two
+  omitX.forEach((e) => e.sort((a, b) => a - b));
+
+  const ribbon = [];
+  omitX.forEach((e) => {
+    ribbon.push(e[0] * 2 + e[1] * 2);
+    ribbon.push(e[0] * e[1] * e[2]);
+  });
+  let totalRibbon = 0;
+  ribbon.forEach((e) => {
+    totalRibbon += e;
+  });
+  console.log(totalRibbon);
+  // console.log(omitX);
 };
 
 solve();
